@@ -1,0 +1,79 @@
+/* Kernel includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+
+/* MCAL includes. */
+#include "uart0.h"
+
+
+#define NUMBER_OF_ITERATIONS_PER_ONE_MILI_SECOND 369
+
+void Delay_MS(unsigned long long n)
+{
+    volatile unsigned long long count = 0;
+    while(count++ < (NUMBER_OF_ITERATIONS_PER_ONE_MILI_SECOND * n) );
+}
+
+/* The HW setup function */
+static void prvSetupHardware( void );
+
+/* FreeRTOS tasks */
+void vPeriodicTask(void *pvParameters);
+
+/* Define the strings that will be passed in as the task parameters. */
+const char pcTextForTask1[] = "Task 1 is running\r\n";
+const char pcTextForTask2[] = "Task 2 is running\r\n";
+
+int main()
+{
+    /* Setup the hardware for use with the Tiva C board. */
+    prvSetupHardware();
+
+    /* Create Tasks here */
+	xTaskCreate(vPeriodicTask,           /* Pointer to the function that implements the task. */
+	            "Task 1",                /* Text name for the task.  This is to facilitate debugging only. */
+	            256,                     /* Stack depth - most small microcontrollers will use much less stack than this. */
+	            (void*)pcTextForTask1,   /* Pass the text to be printed in as the task parameter. */
+	            1,                       /* This task will run at priority 1. */
+	            NULL);                   /* We are not using the task handle. */
+
+
+    xTaskCreate(vPeriodicTask,           /* Pointer to the function that implements the task. */
+                "Task 2",                /* Text name for the task.  This is to facilitate debugging only. */
+                256,                     /* Stack depth - most small microcontrollers will use much less stack than this. */
+                (void*)pcTextForTask2,   /* Pass the text to be printed in as the task parameter. */
+                1,                       /* This task will run at priority 1. */
+                NULL);                   /* We are not using the task handle. */
+
+	/* Now all the tasks have been started - start the scheduler.
+
+	NOTE : Tasks run in system mode and the scheduler runs in Supervisor mode.
+	The processor MUST be in supervisor mode when vTaskStartScheduler is 
+	called.  The demo applications included in the FreeRTOS.org download switch
+	to supervisor mode prior to main being called.  If you are not using one of
+	these demo application projects then ensure Supervisor mode is used here. */ 
+	vTaskStartScheduler();
+	
+	/* Should never reach here!  If you do then there was not enough heap
+	available for the idle task to be created. */
+	for (;;);
+	
+}
+
+
+static void prvSetupHardware( void )
+{
+	/* Place here any needed HW initialization such as GPIO, UART, etc.  */
+    UART0_Init();
+}
+
+void vPeriodicTask(void *pvParameters)
+{
+    for (;;)
+    {
+        UART0_SendString(( uint8 * ) pvParameters);
+        Delay_MS(1000);
+    }
+}
+
+/*-----------------------------------------------------------*/

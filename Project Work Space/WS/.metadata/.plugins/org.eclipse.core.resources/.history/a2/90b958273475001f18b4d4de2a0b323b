@@ -1,0 +1,272 @@
+/* Kernel includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "TypeDef.h"
+#include "semphr.h"
+/* MCAL includes. */
+#include "uart0.h"
+#include "GPTM.h"
+#include "HAL/LM35/lm35.h"
+#include "driverlib/adc.h"
+
+#define xGetTempMaxDelay pdMS_TO_TICKS(10);
+#define xDriverInfoMaxDelay pdMS_TO_TICKS(50);
+#define xPassengerInfoMaxDelay xDriverInfoMaxDelay
+
+/* The HW setup function */
+static void prvSetupHardware( void );
+
+/* FreeRTOS tasks */
+void vGetDriverSeatTemp(void *pvParameters);
+void vGetPassengerSeatTemp(void *pvParameters);
+void vSetDriverSeatHeaterState(void *pvParameters);
+void vSetPassengerSeatHeaterState(void *pvParameters);
+void vDisplaySystemState(void *pvParameters);
+void vGetDriverInput(void *pvParameters);
+void vGetPassengerInput(void *pvParameters);
+void vGPIOPortF_Handler(void);
+/* FreeRTOS Mutexes */
+xSemaphoreHandle xLM35GetTempMutex;
+xSemaphoreHandle xDriverInfoMutex;
+xSemaphoreHandle xPassengerInfoMutex;
+
+
+/* Used to hold the handle of tasks */
+
+TaskHandle_t xGetDriverSeatTempHandle;
+TaskHandle_t xGetPassengerSeatTempHandle;
+TaskHandle_t xSetDriverSeatHeaterStateHandle;
+TaskHandle_t xSetPassengerSeatHeaterStateHandle;
+TaskHandle_t xDisplaySystemStateHandle;
+TaskHandle_t xGetDriverInputHandle;
+TaskHandle_t xGetDriverInputFromSteeringHandle;
+TaskHandle_t xGetPassengerInputHandle;
+
+SeatInfoType DriverSeatInfo = {10, Heater_OFF, Desired_HIGH};
+SeatInfoType PassengerSeatInfo = {10, Heater_OFF, Desired_HIGH};
+int main()
+{
+    /* Setup the hardware for use with the Tiva C board. */
+    prvSetupHardware();
+
+    /* Create Tasks here */
+    xTaskCreate(vGetDriverSeatTemp, "Get Driver Seat Temperature Task", 256, NULL, 5, &xGetDriverSeatTempHandle);
+    xTaskCreate(vGetPassengerSeatTemp, "Get Passenger Seat Temperature Task", 256, NULL, 5, &xGetPassengerSeatTempHandle);
+    xTaskCreate(vSetDriverSeatHeaterState, "Set Driver Seat Heater State Task", 256, NULL, 4, &xSetDriverSeatHeaterStateHandle);
+    xTaskCreate(vSetPassengerSeatHeaterState, "Set Passenger Seat Heater State Task", 256, NULL, 4, &xSetPassengerSeatHeaterStateHandle);
+    xTaskCreate(vDisplaySystemState, "Display System Information Task", 256, NULL, 7, &xDisplaySystemStateHandle);
+    xTaskCreate(vGetDriverInput, "Get Driver Selection", 256, NULL, 3, &xGetDriverInputHandle);
+    xTaskCreate(vGetDriverInput, "Get Driver Selection From Steering Wheel", 256, NULL, 3, &xGetDriverInputFromSteeringHandle);
+    xTaskCreate(vGetPassengerInput, "Get Passenger Selection", 256, NULL, 3, &xGetPassengerInputHandle);
+
+
+
+    /* Create a Mutex */
+    xLM35GetTempMutex = xSemaphoreCreateMutex();
+    xDriverInfoMutex = xSemaphoreCreateMutex();
+    xPassengerInfoMutex = xSemaphoreCreateMutex();
+
+	/* Now all the tasks have been started - start the scheduler.
+
+	NOTE : Tasks run in system mode and the scheduler runs in Supervisor mode.
+	The processor MUST be in supervisor mode when vTaskStartScheduler is 
+	called.  The demo applications included in the FreeRTOS.org download switch
+	to supervisor mode prior to main being called.  If you are not using one of
+	these demo application projects then ensure Supervisor mode is used here. */ 
+	vTaskStartScheduler();
+	
+	/* Should never reach here!  If you do then there was not enough heap
+	available for the idle task to be created. */
+	for (;;);
+	
+}
+
+
+static void prvSetupHardware( void )
+{
+	/* Place here any needed HW initialization such as GPIO, UART, etc.  */
+    UART0_Init();
+    GPTM_WTimer0Init();
+    DriverSensor_Init();
+    PassengerSensor_Init();
+}
+
+
+void vGetDriverSeatTemp(void *pvParameters){
+    /* Tries to acquire the semaphore. */
+    uint32 Timeout = xGetTempMaxDelay;
+    for(;;){
+    if (xSemaphoreTake(xLM35GetTempMutex, Timeout) == pdTRUE) {
+
+        DriverSeatInfo.SeatTemperature = GetDriverSensorReading();
+        /* Release the peripheral */
+        xSemaphoreGive(xLM35GetTempMutex);
+    }}
+}
+void vGetPassengerSeatTemp(void *pvParameters){
+    /* Tries to acquire the semaphore. */
+    uint32 Timeout = xGetTempMaxDelay;
+    if (xSemaphoreTake(xLM35GetTempMutex, Timeout) == pdTRUE) {
+
+        PassengerSeatInfo.SeatTemperature = GetPassengerSensorReading();
+        /* Release the peripheral */
+        xSemaphoreGive(xLM35GetTempMutex);
+    }
+}
+
+void vSetDriverSeatHeaterState(void *pvParameters){
+
+    uint32 Timeout = xDriverInfoMaxDelay;
+    if(xSemaphoreTake(xDriverInfoMutex, Timeout) == pdTRUE){
+    uint8 xTemperatureDifference = (DriverSeatInfo.SeatTemperature - DriverSeatInfo.DesiredTemperature);
+    if(xTemperatureDifference >= 10){
+        DriverSeatInfo.HeaterState = Heater_HIGH;
+    }else if(xTemperatureDifference < 10 && xTemperatureDifference >= 5){
+        DriverSeatInfo.HeaterState = Heater_MED;
+    }else if(xTemperatureDifference > 5){
+        DriverSeatInfo.HeaterState = Heater_LOW;
+    }else{
+        DriverSeatInfo.HeaterState = Heater_OFF;
+    }
+    xSemaphoreGive(xDriverInfoMutex);
+  }
+}
+void vSetPassengerSeatHeaterState(void *pvParameters){
+
+    uint32 Timeout = xPassengerInfoMaxDelay;
+    if(xSemaphoreTake(xPassengerInfoMutex, Timeout) == pdTRUE){
+
+        uint8 xTemperatureDifference = (PassengerSeatInfo.SeatTemperature) - (PassengerSeatInfo.DesiredTemperature);
+
+        if(xTemperatureDifference >= 10){
+            PassengerSeatInfo.HeaterState = Heater_HIGH;
+        }else if(xTemperatureDifference < 10 && xTemperatureDifference >= 5){
+            PassengerSeatInfo.HeaterState = Heater_MED;
+        }else if(xTemperatureDifference > 5){
+            PassengerSeatInfo.HeaterState = Heater_LOW;
+        }else{
+            PassengerSeatInfo.HeaterState = Heater_OFF;
+        }
+    xSemaphoreGive(xPassengerInfoMutex);
+  }
+}
+
+void vDisplaySystemState(void *pvParameters){
+
+    if(xSemaphoreTake(xDriverInfoMutex, portMAX_DELAY) == pdTRUE){
+    UART0_SendString("*****Driver Seat*****\r\n");
+    UART0_SendString("Current Temperature: ");
+    UART0_SendInteger(DriverSeatInfo.SeatTemperature);
+
+    UART0_SendString("Desired Heating Level: ");
+    if(DriverSeatInfo.DesiredTemperature == Desired_OFF){
+        UART0_SendString("OFF\r\n");
+    }else if(DriverSeatInfo.DesiredTemperature == Desired_LOW){
+        UART0_SendString("LOW\r\n");
+    }else if(DriverSeatInfo.DesiredTemperature == Desired_MED){
+        UART0_SendString("MED\r\n");
+    }else{
+        UART0_SendString("HIGH\r\n");
+    }
+
+    UART0_SendString("\r\nHeater Intensity: ");
+    if(DriverSeatInfo.HeaterState == Heater_OFF){
+        UART0_SendString("OFF\r\n");
+    }else if(DriverSeatInfo.HeaterState == Heater_LOW){
+        UART0_SendString("LOW\r\n");
+    }else if(DriverSeatInfo.HeaterState == Heater_MED){
+        UART0_SendString("MED\r\n");
+    }else{
+        UART0_SendString("HIGH\r\n");
+    }
+    xSemaphoreGive(xDriverInfoMutex);
+   }
+
+    if(xSemaphoreTake(xDriverInfoMutex, portMAX_DELAY) == pdTRUE){
+    UART0_SendString("*****Passenger Seat*****\r\n");
+    UART0_SendString("Current Temperature: ");
+    UART0_SendInteger(PassengerSeatInfo.SeatTemperature);
+
+    UART0_SendString("Desired Heating Level: ");
+    if(PassengerSeatInfo.DesiredTemperature == Desired_OFF){
+        UART0_SendString("OFF\r\n");
+    }else if(PassengerSeatInfo.DesiredTemperature == Desired_LOW){
+        UART0_SendString("LOW\r\n");
+    }else if(PassengerSeatInfo.DesiredTemperature == Desired_MED){
+        UART0_SendString("MED\r\n");
+    }else{
+        UART0_SendString("HIGH\r\n");
+    }
+
+    UART0_SendString("\r\nHeater Intensity: ");
+    if(PassengerSeatInfo.HeaterState == Heater_OFF){
+        UART0_SendString("OFF\r\n");
+    }else if(PassengerSeatInfo.HeaterState == Heater_LOW){
+        UART0_SendString("LOW\r\n");
+    }else if(PassengerSeatInfo.HeaterState == Heater_MED){
+        UART0_SendString("MED\r\n");
+    }else{
+        UART0_SendString("HIGH\r\n");
+    }
+    xSemaphoreGive(xPassengerInfoMutex);
+    }
+
+}
+
+void vGPIOPortF_Handler(void)
+{
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    if(GPIO_PORTF_RIS_REG & (1<<4))
+    {
+        /* Synchronize with the red led task to toggle it each edge triggered interrupt */
+        xSemaphoreGiveFromISR(xDriverInputSemaphore, &xHigherPriorityTaskWoken);
+        /* Clear Trigger flag for PF4 (Interrupt Flag) */
+        GPIO_PORTF_ICR_REG   |= (1<<4);
+    }
+    else if(GPIO_PORTF_RIS_REG & (1<<0))
+    {
+        /* Synchronize with the red led task to toggle it each edge triggered interrupt */
+        xSemaphoreGiveFromISR(xPassangerInputSemaphore, &xHigherPriorityTaskWoken);
+        /* Clear Trigger flag for PF0 (Interrupt Flag) */
+        GPIO_PORTF_ICR_REG   |= (1<<0);
+    }
+    else {
+        /* Synchronize with the red led task to toggle it each edge triggered interrupt */
+        xSemaphoreGiveFromISR(xDriverInputSemaphoreFromSteering, &xHigherPriorityTaskWoken);
+        /* Clear Trigger flag for PF4 (Interrupt Flag) */
+        GPIO_PORTF_ICR_REG   |= (1<<4);
+    }
+    portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+}
+
+void vGetDriverInput(void *pvParameters){
+
+    {
+        for (;;) {
+            /* Waits for synchronization with PF4 & PF0 edge triggered interrupt using the binary semaphore. */
+            /* This task will be blocked until both PF0 & PF4 edge triggered interrupt happened. */
+            /* This task does not need a delay call since it is waiting for edge triggered interrupt */
+            if ((xSemaphoreTake(xBinarySemaphore1, portMAX_DELAY) == pdTRUE) && (xSemaphoreTake(xBinarySemaphore2, portMAX_DELAY) == pdTRUE))
+            {
+                GPIO_RedLedToggle();
+            }
+        }
+    }
+
+}
+
+void vGetPassengerInput(void *pvParameters){
+
+    {
+        for (;;) {
+            /* Waits for synchronization with PF4 & PF0 edge triggered interrupt using the binary semaphore. */
+            /* This task will be blocked until both PF0 & PF4 edge triggered interrupt happened. */
+            /* This task does not need a delay call since it is waiting for edge triggered interrupt */
+            if ((xSemaphoreTake(xBinarySemaphore1, portMAX_DELAY) == pdTRUE) && (xSemaphoreTake(xBinarySemaphore2, portMAX_DELAY) == pdTRUE))
+            {
+                GPIO_RedLedToggle();
+            }
+        }
+    }
+}
+/*-----------------------------------------------------------*/

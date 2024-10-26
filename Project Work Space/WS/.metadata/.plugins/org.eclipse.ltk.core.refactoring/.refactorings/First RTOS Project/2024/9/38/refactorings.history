@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;First RTOS Project/HAL/LM35/pots.c&apos; to &apos;lm35.c&apos;" description="Rename resource &apos;pots.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="HAL/LM35/pots.c" name="lm35.c" stamp="1726433092834" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;First RTOS Project/HAL/LM35/pots.h&apos; to &apos;lm35.h&apos;" description="Rename resource &apos;pots.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="HAL/LM35/pots.h" name="lm35.h" stamp="1726433100832" updateReferences="true"/>
+</session>

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<simulation cycles_per_ms="1000000" duration="5000000000" etm="wcet">
+	<sched class="simso.schedulers.FP" overhead="0" overhead_activate="0" overhead_terminate="0"/>
+	<caches memory_access_time="100"/>
+	<processors>
+		<processor cl_overhead="0" cs_overhead="0" id="1" name="CPU 1" speed="1.0"/>
+	</processors>
+	<tasks>
+		<field name="priority" type="int"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="10000.0" et_stddev="0.0" id="1" instructions="0" list_activation_dates="" mix="0.5" name="RTM" period="2200.0" preemption_cost="0" priority="2" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="50.0" et_stddev="0.0" id="2" instructions="0" list_activation_dates="" mix="0.5" name="SetDriverState" period="150.0" preemption_cost="0" priority="2" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="50.0" et_stddev="0.0" id="3" instructions="0" list_activation_dates="" mix="0.5" name="SetPsngrState" period="150.0" preemption_cost="0" priority="2" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="100.0" et_stddev="0.0" id="4" instructions="0" list_activation_dates="" mix="0.5" name="GetDriverTemp" period="500.0" preemption_cost="0" priority="3" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="100.0" et_stddev="0.0" id="5" instructions="0" list_activation_dates="" mix="0.5" name="GetPsngrTemp" period="500.0" preemption_cost="0" priority="3" task_type="Periodic"/>
+		<task ACET="0.0" WCET="10.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="50.0" et_stddev="0.0" id="6" instructions="0" list_activation_dates="" mix="0.5" name="Display" period="1000.0" preemption_cost="0" priority="3" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="50.0" et_stddev="0.0" id="7" instructions="0" list_activation_dates="" mix="0.5" name="GetDriverInput" period="10000.0" preemption_cost="0" priority="4" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="50.0" et_stddev="0.0" id="8" instructions="0" list_activation_dates="" mix="0.5" name="GetPsngrInput" period="10000.0" preemption_cost="0" priority="4" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="0.0" base_cpi="1.0" deadline="50.0" et_stddev="0.0" id="9" instructions="0" list_activation_dates="" mix="0.5" name="GetInputSteering" period="10000.0" preemption_cost="0" priority="4" task_type="Periodic"/>
+		<task ACET="0.0" WCET="2.0" abort_on_miss="no" activationDate="520.0" base_cpi="1.0" deadline="10000.0" et_stddev="0.0" id="10" instructions="0" list_activation_dates="" mix="0.5" name="SensorErr" period="10000.0" preemption_cost="0" priority="5" task_type="Periodic"/>
+	</tasks>
+</simulation>
