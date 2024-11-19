@@ -105,34 +105,34 @@ int main()
     prvSetupHardware();
 
     /* Create Tasks here and assign tags */
-    xTaskCreate(vGetDriverSeatTemp, "Get Driver Seat Temperature Task", 256, NULL, 3, &xGetDriverSeatTempHandle);
+    xTaskCreate(vGetDriverSeatTemp, "Get Driver Seat Temperature Task", 128, NULL, 3, &xGetDriverSeatTempHandle);
     vTaskSetApplicationTaskTag( xGetDriverSeatTempHandle, ( TaskHookFunction_t ) 1 );
 
-    xTaskCreate(vGetPassengerSeatTemp, "Get Passenger Seat Temperature Task", 256, NULL, 3, &xGetPassengerSeatTempHandle);
+    xTaskCreate(vGetPassengerSeatTemp, "Get Passenger Seat Temperature Task", 128, NULL, 3, &xGetPassengerSeatTempHandle);
     vTaskSetApplicationTaskTag( xGetPassengerSeatTempHandle, ( TaskHookFunction_t ) 2 );
 
-    xTaskCreate(vSetDriverSeatHeaterState, "Set Driver Seat Heater State Task", 256, NULL, 2, &xSetDriverSeatHeaterStateHandle);
+    xTaskCreate(vSetDriverSeatHeaterState, "Set Driver Seat Heater State Task", 128, NULL, 2, &xSetDriverSeatHeaterStateHandle);
     vTaskSetApplicationTaskTag( xSetDriverSeatHeaterStateHandle, ( TaskHookFunction_t ) 3 );
 
-    xTaskCreate(vSetPassengerSeatHeaterState, "Set Passenger Seat Heater State Task", 256, NULL, 2, &xSetPassengerSeatHeaterStateHandle);
+    xTaskCreate(vSetPassengerSeatHeaterState, "Set Passenger Seat Heater State Task", 128, NULL, 2, &xSetPassengerSeatHeaterStateHandle);
     vTaskSetApplicationTaskTag( xSetPassengerSeatHeaterStateHandle, ( TaskHookFunction_t ) 4 );
 
-    xTaskCreate(vDisplaySystemState, "Display System Information Task", 256, NULL, 3, &xDisplaySystemStateHandle);
+    xTaskCreate(vDisplaySystemState, "Display System Information Task", 128, NULL, 3, &xDisplaySystemStateHandle);
     vTaskSetApplicationTaskTag( xDisplaySystemStateHandle, ( TaskHookFunction_t ) 5 );
 
-    xTaskCreate(vGetDriverInput, "Get Driver Selection", 256, NULL, 4, &xGetDriverInputHandle);
+    xTaskCreate(vGetDriverInput, "Get Driver Selection", 128, NULL, 4, &xGetDriverInputHandle);
     vTaskSetApplicationTaskTag( xGetDriverInputHandle, ( TaskHookFunction_t ) 6 );
 
-    xTaskCreate(vGetDriverInput, "Get Driver Selection From Steering Wheel", 256, NULL, 4, &xGetDriverInputFromSteeringHandle);
+    xTaskCreate(vGetDriverInput, "Get Driver Selection From Steering Wheel", 128, NULL, 4, &xGetDriverInputFromSteeringHandle);
     vTaskSetApplicationTaskTag( xGetDriverInputFromSteeringHandle, ( TaskHookFunction_t ) 7 );
 
-    xTaskCreate(vGetPassengerInput, "Get Passenger Selection", 256, NULL, 4, &xGetPassengerInputHandle);
+    xTaskCreate(vGetPassengerInput, "Get Passenger Selection", 128, NULL, 4, &xGetPassengerInputHandle);
     vTaskSetApplicationTaskTag( xGetPassengerInputHandle, ( TaskHookFunction_t ) 8 );
 
-    xTaskCreate(vSensorErrorHook, "Sensor Error Hook", 256, NULL, 5, &xSensorErrorHookHandle);
+    xTaskCreate(vSensorErrorHook, "Sensor Error Hook", 128, NULL, 5, &xSensorErrorHookHandle);
     vTaskSetApplicationTaskTag( xSensorErrorHookHandle, ( TaskHookFunction_t ) 9 );
 
-    xTaskCreate(vRunTimeMeasurementsTask, "Run time", 256, NULL, 2, &xRunTimeMeasurementsHandle);
+    xTaskCreate(vRunTimeMeasurementsTask, "Run time", 128, NULL, 2, &xRunTimeMeasurementsHandle);
     vTaskSetApplicationTaskTag( xRunTimeMeasurementsHandle, ( TaskHookFunction_t ) 10 );
 
 
@@ -167,7 +167,6 @@ static void prvSetupHardware(void)
 {
     /* Place here any needed HW initialization such as GPIO, UART, etc.  */
     UART0_Init();
-    GPTM_WTimer0Init();
     DriverSensor_Init();
     PassengerSensor_Init();
     GPIO_BuiltinButtonsLedsInit();

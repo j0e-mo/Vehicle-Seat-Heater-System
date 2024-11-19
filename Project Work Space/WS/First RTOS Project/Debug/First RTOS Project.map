@@ -1,34 +1,34 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.7                     
 ******************************************************************************
->> Linked Sat Oct 12 00:49:31 2024
+>> Linked Tue Nov 19 02:58:27 2024
 
 OUTPUT FILE NAME:   <First RTOS Project.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000075d1
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000075b5
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  00007b74  0003848c  R  X
-  SRAM                  20000000   00008000  00001685  0000697b  RW X
+  FLASH                 00000000   00040000  00007b58  000384a8  R  X
+  SRAM                  20000000   00008000  00002699  00005967  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    00007b78   00007b78    r-x
+00000000    00000000    00007b58   00007b58    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
-  0000026c    0000026c    000073cc   000073cc    r-x .text
-  00007638    00007638    000004ec   000004ec    r-- .const
-  00007b28    00007b28    00000050   00000050    r-- .cinit
-20000000    20000000    00001689   00000000    rw-
+  0000026c    0000026c    000073b0   000073b0    r-x .text
+  0000761c    0000761c    000004ec   000004ec    r-- .const
+  00007b08    00007b08    00000050   00000050    r-- .cinit
+20000000    20000000    00002699   00000000    rw-
   20000000    20000000    0000026c   00000000    rw- .vtable
-  2000026c    2000026c    000011c8   00000000    rw- .bss
-  20001438    20001438    00000200   00000000    rw- .stack
-  20001638    20001638    00000051   00000000    rw- .data
+  2000026c    2000026c    000021dc   00000000    rw- .bss
+  20002448    20002448    00000200   00000000    rw- .stack
+  20002648    20002648    00000051   00000000    rw- .data
 
 
 SECTION ALLOCATION MAP
@@ -39,68 +39,68 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    0000026c     
                   00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
 
-.text      0    0000026c    000073cc     
+.text      0    0000026c    000073b0     
                   0000026c    00001ff4     tasks.obj (.text)
                   00002260    00000f1a     queue.obj (.text)
                   0000317a    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : div0.asm.obj (.text)
                   0000317c    00000ef4     sysctl.obj (.text)
-                  00004070    00000c68     main.obj (.text)
-                  00004cd8    00000b88     gpio.obj (.text)
-                  00005860    000007c2     adc.obj (.text)
-                  00006022    00000002     --HOLE-- [fill = 0]
-                  00006024    00000470     eeprom.obj (.text)
-                  00006494    000003c0     interrupt.obj (.text)
-                  00006854    000002b4     port.obj (.text)
-                  00006b08    000001dc     gpio.obj (.text)
-                  00006ce4    000001c8     uart0.obj (.text)
-                  00006eac    0000012a     list.obj (.text)
-                  00006fd6    00000002     --HOLE-- [fill = 0]
-                  00006fd8    000000f0     lm35.obj (.text)
-                  000070c8    000000da     portasm.obj (.text)
-                  000071a2    00000002     --HOLE-- [fill = 0]
-                  000071a4    000000d0     heap_1.obj (.text)
-                  00007274    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
-                  00007310    00000096                                   : ull_div_t2.asm.obj (.text)
-                  000073a6    0000007a                                   : memset_t2.asm.obj (.text)
-                  00007420    0000006e                                   : ll_div_t2.asm.obj (.text)
-                  0000748e    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  000074f6    00000002     --HOLE-- [fill = 0]
-                  000074f8    00000054     GPTM.obj (.text)
-                  0000754c    00000044     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
-                  00007590    0000003e     cpu.obj (.text)
-                  000075ce    00000002     --HOLE-- [fill = 0]
-                  000075d0    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
-                  00007604    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  00007612    0000000c                                   : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
-                  0000761e    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
-                  0000762a    00000006     sysctl.obj (.text:SysCtlDelay)
-                  00007630    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  00007634    00000004                                   : exit.c.obj (.text:abort:abort)
+                  00004070    00000c4c     main.obj (.text)
+                  00004cbc    00000b88     gpio.obj (.text)
+                  00005844    000007c2     adc.obj (.text)
+                  00006006    00000002     --HOLE-- [fill = 0]
+                  00006008    00000470     eeprom.obj (.text)
+                  00006478    000003c0     interrupt.obj (.text)
+                  00006838    000002b4     port.obj (.text)
+                  00006aec    000001dc     gpio.obj (.text)
+                  00006cc8    000001c8     uart0.obj (.text)
+                  00006e90    0000012a     list.obj (.text)
+                  00006fba    00000002     --HOLE-- [fill = 0]
+                  00006fbc    000000f0     lm35.obj (.text)
+                  000070ac    000000da     portasm.obj (.text)
+                  00007186    00000002     --HOLE-- [fill = 0]
+                  00007188    000000d0     heap_1.obj (.text)
+                  00007258    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  000072f4    00000096                                   : ull_div_t2.asm.obj (.text)
+                  0000738a    0000007a                                   : memset_t2.asm.obj (.text)
+                  00007404    0000006e                                   : ll_div_t2.asm.obj (.text)
+                  00007472    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000074da    00000002     --HOLE-- [fill = 0]
+                  000074dc    00000054     GPTM.obj (.text)
+                  00007530    00000044     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00007574    0000003e     cpu.obj (.text)
+                  000075b2    00000002     --HOLE-- [fill = 0]
+                  000075b4    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  000075e8    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  000075f6    0000000c                                   : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
+                  00007602    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  0000760e    00000006     sysctl.obj (.text:SysCtlDelay)
+                  00007614    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00007618    00000004                                   : exit.c.obj (.text:abort:abort)
 
-.const     0    00007638    000004ec     
-                  00007638    00000120     sysctl.obj (.const:g_pppui32XTALtoVCO)
-                  00007758    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapBlizzard)
-                  00007818    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapSnowflake)
-                  000078d8    0000009c     interrupt.obj (.const:g_pui32Regs)
-                  00007974    00000090     gpio.obj (.const:g_pui32GPIOBaseAddrs)
-                  00007a04    0000006c     sysctl.obj (.const:g_pui32Xtals)
-                  00007a70    00000030     sysctl.obj (.const:g_sXTALtoMEMTIM)
-                  00007aa0    00000020     interrupt.obj (.const:g_pui32Priority)
-                  00007ac0    00000014     interrupt.obj (.const:g_pui32Dii16Regs)
-                  00007ad4    00000014     interrupt.obj (.const:g_pui32EnRegs)
-                  00007ae8    00000014     interrupt.obj (.const:g_pui32PendRegs)
-                  00007afc    00000014     interrupt.obj (.const:g_pui32UnpendRegs)
-                  00007b10    00000008     sysctl.obj (.const:g_pui32VCOFrequencies)
-                  00007b18    00000008     port.obj (.const)
-                  00007b20    00000004     tasks.obj (.const)
+.const     0    0000761c    000004ec     
+                  0000761c    00000120     sysctl.obj (.const:g_pppui32XTALtoVCO)
+                  0000773c    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapBlizzard)
+                  000077fc    000000c0     gpio.obj (.const:g_ppui32GPIOIntMapSnowflake)
+                  000078bc    0000009c     interrupt.obj (.const:g_pui32Regs)
+                  00007958    00000090     gpio.obj (.const:g_pui32GPIOBaseAddrs)
+                  000079e8    0000006c     sysctl.obj (.const:g_pui32Xtals)
+                  00007a54    00000030     sysctl.obj (.const:g_sXTALtoMEMTIM)
+                  00007a84    00000020     interrupt.obj (.const:g_pui32Priority)
+                  00007aa4    00000014     interrupt.obj (.const:g_pui32Dii16Regs)
+                  00007ab8    00000014     interrupt.obj (.const:g_pui32EnRegs)
+                  00007acc    00000014     interrupt.obj (.const:g_pui32PendRegs)
+                  00007ae0    00000014     interrupt.obj (.const:g_pui32UnpendRegs)
+                  00007af4    00000008     sysctl.obj (.const:g_pui32VCOFrequencies)
+                  00007afc    00000008     port.obj (.const)
+                  00007b04    00000004     tasks.obj (.const)
 
-.cinit     0    00007b28    00000050     
-                  00007b28    00000018     (.cinit..data.load) [load image, compression = lzss]
-                  00007b40    0000000c     (__TI_handler_table)
-                  00007b4c    00000004     --HOLE-- [fill = 0]
-                  00007b50    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  00007b58    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
-                  00007b60    00000018     (__TI_cinit_table)
+.cinit     0    00007b08    00000050     
+                  00007b08    00000018     (.cinit..data.load) [load image, compression = lzss]
+                  00007b20    0000000c     (__TI_handler_table)
+                  00007b2c    00000004     --HOLE-- [fill = 0]
+                  00007b30    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00007b38    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
+                  00007b40    00000018     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
@@ -108,53 +108,53 @@ section   page    origin      length       input sections
 .vtable    0    20000000    0000026c     UNINITIALIZED
                   20000000    0000026c     interrupt.obj (.vtable)
 
-.bss       0    2000026c    000011c8     UNINITIALIZED
-                  2000026c    00001000     heap_1.obj (.bss:ucHeap)
-                  2000126c    00000064     tasks.obj (.bss:pxReadyTasksLists)
-                  200012d0    0000002c     (.common:ullTasksExecutionTime)
-                  200012fc    0000002c     (.common:ullTasksInTime)
-                  20001328    0000002c     (.common:ullTasksOutTime)
-                  20001354    0000002c     (.common:ullTasksTotalTime)
-                  20001380    00000014     tasks.obj (.bss:xDelayedTaskList1)
-                  20001394    00000014     tasks.obj (.bss:xDelayedTaskList2)
-                  200013a8    00000014     tasks.obj (.bss:xPendingReadyList)
-                  200013bc    00000014     tasks.obj (.bss:xSuspendedTaskList)
-                  200013d0    00000008     tasks.obj (.bss)
-                  200013d8    00000004     adc.obj (.bss:g_pui8OversampleFactor)
-                  200013dc    00000004     (.common:DriverSelection)
-                  200013e0    00000004     (.common:ERROR_CODE)
-                  200013e4    00000004     (.common:PassengerSelection)
-                  200013e8    00000004     (.common:xDisplaySystemStateHandle)
-                  200013ec    00000004     (.common:xDriverInfoMutex)
-                  200013f0    00000004     (.common:xDriverInputSemaphore)
-                  200013f4    00000004     (.common:xDriverInputSemaphoreFromSteering)
-                  200013f8    00000004     (.common:xErrorReportingMutex)
-                  200013fc    00000004     (.common:xGetDriverInputFromSteeringHandle)
-                  20001400    00000004     (.common:xGetDriverInputHandle)
-                  20001404    00000004     (.common:xGetDriverSeatTempHandle)
-                  20001408    00000004     (.common:xGetPassengerInputHandle)
-                  2000140c    00000004     (.common:xGetPassengerSeatTempHandle)
-                  20001410    00000004     (.common:xLM35GetTempMutex)
-                  20001414    00000004     (.common:xLastWakeTime)
-                  20001418    00000004     (.common:xPassengerInfoMutex)
-                  2000141c    00000004     (.common:xPassengerInputSemaphore)
-                  20001420    00000004     (.common:xRunTimeMeasurementsHandle)
-                  20001424    00000004     (.common:xSensorErrorHookHandle)
-                  20001428    00000004     (.common:xSensorErrorHookSemaphore)
-                  2000142c    00000004     (.common:xSetDriverSeatHeaterStateHandle)
-                  20001430    00000004     (.common:xSetPassengerSeatHeaterStateHandle)
+.bss       0    2000026c    000021dc     UNINITIALIZED
+                  2000026c    00002000     heap_1.obj (.bss:ucHeap)
+                  2000226c    00000078     tasks.obj (.bss:pxReadyTasksLists)
+                  200022e4    0000002c     (.common:ullTasksExecutionTime)
+                  20002310    0000002c     (.common:ullTasksInTime)
+                  2000233c    0000002c     (.common:ullTasksOutTime)
+                  20002368    0000002c     (.common:ullTasksTotalTime)
+                  20002394    00000014     tasks.obj (.bss:xDelayedTaskList1)
+                  200023a8    00000014     tasks.obj (.bss:xDelayedTaskList2)
+                  200023bc    00000014     tasks.obj (.bss:xPendingReadyList)
+                  200023d0    00000014     tasks.obj (.bss:xSuspendedTaskList)
+                  200023e4    00000008     tasks.obj (.bss)
+                  200023ec    00000004     adc.obj (.bss:g_pui8OversampleFactor)
+                  200023f0    00000004     (.common:DriverSelection)
+                  200023f4    00000004     (.common:ERROR_CODE)
+                  200023f8    00000004     (.common:PassengerSelection)
+                  200023fc    00000004     (.common:xDisplaySystemStateHandle)
+                  20002400    00000004     (.common:xDriverInfoMutex)
+                  20002404    00000004     (.common:xDriverInputSemaphore)
+                  20002408    00000004     (.common:xDriverInputSemaphoreFromSteering)
+                  2000240c    00000004     (.common:xErrorReportingMutex)
+                  20002410    00000004     (.common:xGetDriverInputFromSteeringHandle)
+                  20002414    00000004     (.common:xGetDriverInputHandle)
+                  20002418    00000004     (.common:xGetDriverSeatTempHandle)
+                  2000241c    00000004     (.common:xGetPassengerInputHandle)
+                  20002420    00000004     (.common:xGetPassengerSeatTempHandle)
+                  20002424    00000004     (.common:xLM35GetTempMutex)
+                  20002428    00000004     (.common:xLastWakeTime)
+                  2000242c    00000004     (.common:xPassengerInfoMutex)
+                  20002430    00000004     (.common:xPassengerInputSemaphore)
+                  20002434    00000004     (.common:xRunTimeMeasurementsHandle)
+                  20002438    00000004     (.common:xSensorErrorHookHandle)
+                  2000243c    00000004     (.common:xSensorErrorHookSemaphore)
+                  20002440    00000004     (.common:xSetDriverSeatHeaterStateHandle)
+                  20002444    00000004     (.common:xSetPassengerSeatHeaterStateHandle)
 
-.data      0    20001638    00000051     UNINITIALIZED
-                  20001638    00000030     tasks.obj (.data)
-                  20001668    0000000c     port.obj (.data)
-                  20001674    00000008     heap_1.obj (.data)
-                  2000167c    00000007     main.obj (.data)
-                  20001683    00000003     main.obj (.data:DriverSeatInfo)
-                  20001686    00000003     main.obj (.data:PassengerSeatInfo)
+.data      0    20002648    00000051     UNINITIALIZED
+                  20002648    00000030     tasks.obj (.data)
+                  20002678    0000000c     port.obj (.data)
+                  20002684    00000008     heap_1.obj (.data)
+                  2000268c    00000007     main.obj (.data)
+                  20002693    00000003     main.obj (.data:DriverSeatInfo)
+                  20002696    00000003     main.obj (.data:PassengerSeatInfo)
 
-.stack     0    20001438    00000200     UNINITIALIZED
-                  20001438    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
-                  2000143c    000001fc     --HOLE--
+.stack     0    20002448    00000200     UNINITIALIZED
+                  20002448    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000244c    000001fc     --HOLE--
 
 __llvm_prf_cnts 
 *          0    20000000    00000000     UNINITIALIZED
@@ -164,17 +164,17 @@ MODULE SUMMARY
        Module                         code    ro data   rw data
        ------                         ----    -------   -------
     .\
-       main.obj                       3176    0         277    
+       main.obj                       3148    0         277    
        tm4c123gh6pm_startup_ccs.obj   12      620       0      
     +--+------------------------------+-------+---------+---------+
-       Total:                         3188    620       277    
+       Total:                         3160    620       277    
                                                                
     .\FreeRTOS\Source\
-       tasks.obj                      8180    4         236    
+       tasks.obj                      8180    4         256    
        queue.obj                      3866    0         0      
        list.obj                       298     0         0      
     +--+------------------------------+-------+---------+---------+
-       Total:                         12344   4         236    
+       Total:                         12344   4         256    
                                                                
     .\FreeRTOS\Source\portable\CCS\ARM_CM4F\
        port.obj                       692     8         12     
@@ -183,9 +183,9 @@ MODULE SUMMARY
        Total:                         910     8         12     
                                                                
     .\FreeRTOS\Source\portable\MemMang\
-       heap_1.obj                     208     0         4104   
+       heap_1.obj                     208     0         8200   
     +--+------------------------------+-------+---------+---------+
-       Total:                         208     0         4104   
+       Total:                         208     0         8200   
                                                                
     .\HAL\LM35\
        lm35.obj                       240     0         0      
@@ -236,20 +236,20 @@ MODULE SUMMARY
        Stack:                         0       0         512    
        Linker Generated:              0       76        0      
     +--+------------------------------+-------+---------+---------+
-       Grand Total:                   29634   1956      5765   
+       Grand Total:                   29606   1956      9881   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00007b60 records: 3, size/record: 8, table size: 24
-	.data: load addr=00007b28, load size=00000018 bytes, run addr=20001638, run size=00000051 bytes, compression=lzss
-	.bss: load addr=00007b50, load size=00000008 bytes, run addr=2000026c, run size=000011c8 bytes, compression=zero_init
-	.vtable: load addr=00007b58, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
+__TI_cinit_table @ 00007b40 records: 3, size/record: 8, table size: 24
+	.data: load addr=00007b08, load size=00000018 bytes, run addr=20002648, run size=00000051 bytes, compression=lzss
+	.bss: load addr=00007b30, load size=00000008 bytes, run addr=2000026c, run size=000021dc bytes, compression=zero_init
+	.vtable: load addr=00007b38, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00007b40 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 00007b20 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -259,163 +259,163 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                               
 -------   ----                               
-00005f9d  ADCBusy                            
-00005fe5  ADCClockConfigGet                  
-00005fbb  ADCClockConfigSet                  
-00005db7  ADCComparatorConfigure             
-00005e87  ADCComparatorIntClear              
-00005e3d  ADCComparatorIntDisable            
-00005e5b  ADCComparatorIntEnable             
-00005e79  ADCComparatorIntStatus             
-00005dd3  ADCComparatorRegionSet             
-00005df7  ADCComparatorReset                 
-00005d85  ADCHardwareOversampleConfigure     
-0000599b  ADCIntClear                        
-00005eff  ADCIntClearEx                      
-00005901  ADCIntDisable                      
-00005e99  ADCIntDisableEx                    
-0000591d  ADCIntEnable                       
-00005eb1  ADCIntEnableEx                     
-000058bb  ADCIntRegister                     
-00005943  ADCIntStatus                       
-00005ecd  ADCIntStatusEx                     
-000058e3  ADCIntUnregister                   
-00005f57  ADCPhaseDelayGet                   
-00005f45  ADCPhaseDelaySet                   
-00005bfb  ADCProcessorTrigger                
-00005f33  ADCReferenceGet                    
-00005f17  ADCReferenceSet                    
-000059e5  ADCSequenceConfigure               
-00005f81  ADCSequenceDMADisable              
-00005f65  ADCSequenceDMAEnable               
-00005bb9  ADCSequenceDataGet                 
-000059cb  ADCSequenceDisable                 
-000059b1  ADCSequenceEnable                  
-00005b5d  ADCSequenceOverflow                
-00005b75  ADCSequenceOverflowClear           
-00005a69  ADCSequenceStepConfigure           
-00005b8b  ADCSequenceUnderflow               
-00005ba3  ADCSequenceUnderflowClear          
-00005c1f  ADCSoftwareOversampleConfigure     
-00005d17  ADCSoftwareOversampleDataGet       
-00005c57  ADCSoftwareOversampleStepConfigure 
-00007635  C$$EXIT                            
-000075c5  CPUbasepriGet                      
-000075b7  CPUbasepriSet                      
-00007591  CPUcpsid                           
-000075a7  CPUcpsie                           
-0000759d  CPUprimask                         
-000075b3  CPUwfi                             
-2000167c  DRIVER_SENSOR_ERROR                
-20001683  DriverSeatInfo                     
-200013dc  DriverSelection                    
-00006fd9  DriverSensor_Init                  
-000060e9  EEPROMBlockCountGet                
-000063a5  EEPROMBlockHide                    
-00006331  EEPROMBlockLock                    
-000062e9  EEPROMBlockPasswordSet             
-000062a9  EEPROMBlockProtectGet              
-000062bd  EEPROMBlockProtectSet              
-00006359  EEPROMBlockUnlock                  
-00006099  EEPROMInit                         
-00006433  EEPROMIntClear                     
-000063e5  EEPROMIntDisable                   
-000063c1  EEPROMIntEnable                    
-00006403  EEPROMIntStatus                    
-0000626b  EEPROMMassErase                    
-0000614d  EEPROMProgram                      
-00006229  EEPROMProgramNonBlocking           
-000060f7  EEPROMRead                         
-000060dd  EEPROMSizeGet                      
-0000645b  EEPROMStatusGet                    
-200013e0  ERROR_CODE                         
-0000583b  GPIOADCTriggerDisable              
-0000581d  GPIOADCTriggerEnable               
-000057ff  GPIODMATriggerDisable              
-000057e1  GPIODMATriggerEnable               
-00004d93  GPIODirModeGet                     
-00004d37  GPIODirModeSet                     
-000052fb  GPIOIntClear                       
-000052bf  GPIOIntDisable                     
-000052a5  GPIOIntEnable                      
-0000530f  GPIOIntRegister                    
-000052d9  GPIOIntStatus                      
-00004e83  GPIOIntTypeGet                     
-00004ddf  GPIOIntTypeSet                     
-0000532d  GPIOIntUnregister                  
-00005153  GPIOPadConfigGet                   
-00004f19  GPIOPadConfigSet                   
-00005783  GPIOPinConfigure                   
-00005347  GPIOPinRead                        
-0000537f  GPIOPinTypeADC                     
-000053a3  GPIOPinTypeCAN                     
-0000574f  GPIOPinTypeCIR                     
-000053c7  GPIOPinTypeComparator              
-000053eb  GPIOPinTypeEPI                     
-0000540f  GPIOPinTypeEthernetLED             
-00005433  GPIOPinTypeEthernetMII             
-00005457  GPIOPinTypeGPIOInput               
-0000547b  GPIOPinTypeGPIOOutput              
-0000549f  GPIOPinTypeGPIOOutputOD            
-000054c3  GPIOPinTypeI2C                     
-000054e7  GPIOPinTypeI2CSCL                  
-00005707  GPIOPinTypeKBColumn                
-000056e3  GPIOPinTypeKBRow                   
-0000550b  GPIOPinTypeLCD                     
-0000572b  GPIOPinTypeLEDSeq                  
-0000552f  GPIOPinTypeLPC                     
-00005553  GPIOPinTypePECIRx                  
-00005577  GPIOPinTypePECITx                  
-0000559b  GPIOPinTypePWM                     
-000055bf  GPIOPinTypeQEI                     
-000055e3  GPIOPinTypeSSI                     
-00005607  GPIOPinTypeTimer                   
-0000562b  GPIOPinTypeUART                    
-0000564f  GPIOPinTypeUSBAnalog               
-00005673  GPIOPinTypeUSBDigital              
-00005697  GPIOPinTypeWakeHigh                
-000056bd  GPIOPinTypeWakeLow                 
-00005773  GPIOPinWakeStatus                  
-0000535f  GPIOPinWrite                       
-00006bad  GPIO_BlueLedOff                    
-00006b89  GPIO_BlueLedOn                     
-00006bd1  GPIO_BlueLedToggle                 
-00006b09  GPIO_BuiltinButtonsLedsInit        
-00006bb9  GPIO_GreenLedOff                   
-00006b95  GPIO_GreenLedOn                    
-00006bdd  GPIO_GreenLedToggle                
-00006ba1  GPIO_RedLedOff                     
-00006b7d  GPIO_RedLedOn                      
-00006bc5  GPIO_RedLedToggle                  
-00006bfd  GPIO_SW1EdgeTriggeredInterruptInit 
-00006be9  GPIO_SW1GetState                   
-00006c4b  GPIO_SW2EdgeTriggeredInterruptInit 
-00006bf3  GPIO_SW2GetState                   
-000074f9  GPTM_WTimer0Init                   
-00007529  GPTM_WTimer0Read                   
-00006ff1  GetDriverSensorReading             
-00007061  GetPassengerSensorReading          
-00006655  IntDisable                         
-000065e3  IntEnable                          
-000066c7  IntIsEnabled                       
-000064a7  IntMasterDisable                   
-00006497  IntMasterEnable                    
-000067bd  IntPendClear                       
-0000674d  IntPendSet                         
-000065bf  IntPriorityGet                     
-00006537  IntPriorityGroupingGet             
-0000651d  IntPriorityGroupingSet             
-00006817  IntPriorityMaskGet                 
-0000680b  IntPriorityMaskSet                 
-0000656f  IntPrioritySet                     
-000064b7  IntRegister                        
-0000681f  IntTrigger                         
-00006509  IntUnregister                      
-2000167d  PASSENGER_SENSOR_ERROR             
-20001686  PassengerSeatInfo                  
-200013e4  PassengerSelection                 
-00007049  PassengerSensor_Init               
-0000761f  ResetISR                           
+00005f81  ADCBusy                            
+00005fc9  ADCClockConfigGet                  
+00005f9f  ADCClockConfigSet                  
+00005d9b  ADCComparatorConfigure             
+00005e6b  ADCComparatorIntClear              
+00005e21  ADCComparatorIntDisable            
+00005e3f  ADCComparatorIntEnable             
+00005e5d  ADCComparatorIntStatus             
+00005db7  ADCComparatorRegionSet             
+00005ddb  ADCComparatorReset                 
+00005d69  ADCHardwareOversampleConfigure     
+0000597f  ADCIntClear                        
+00005ee3  ADCIntClearEx                      
+000058e5  ADCIntDisable                      
+00005e7d  ADCIntDisableEx                    
+00005901  ADCIntEnable                       
+00005e95  ADCIntEnableEx                     
+0000589f  ADCIntRegister                     
+00005927  ADCIntStatus                       
+00005eb1  ADCIntStatusEx                     
+000058c7  ADCIntUnregister                   
+00005f3b  ADCPhaseDelayGet                   
+00005f29  ADCPhaseDelaySet                   
+00005bdf  ADCProcessorTrigger                
+00005f17  ADCReferenceGet                    
+00005efb  ADCReferenceSet                    
+000059c9  ADCSequenceConfigure               
+00005f65  ADCSequenceDMADisable              
+00005f49  ADCSequenceDMAEnable               
+00005b9d  ADCSequenceDataGet                 
+000059af  ADCSequenceDisable                 
+00005995  ADCSequenceEnable                  
+00005b41  ADCSequenceOverflow                
+00005b59  ADCSequenceOverflowClear           
+00005a4d  ADCSequenceStepConfigure           
+00005b6f  ADCSequenceUnderflow               
+00005b87  ADCSequenceUnderflowClear          
+00005c03  ADCSoftwareOversampleConfigure     
+00005cfb  ADCSoftwareOversampleDataGet       
+00005c3b  ADCSoftwareOversampleStepConfigure 
+00007619  C$$EXIT                            
+000075a9  CPUbasepriGet                      
+0000759b  CPUbasepriSet                      
+00007575  CPUcpsid                           
+0000758b  CPUcpsie                           
+00007581  CPUprimask                         
+00007597  CPUwfi                             
+2000268c  DRIVER_SENSOR_ERROR                
+20002693  DriverSeatInfo                     
+200023f0  DriverSelection                    
+00006fbd  DriverSensor_Init                  
+000060cd  EEPROMBlockCountGet                
+00006389  EEPROMBlockHide                    
+00006315  EEPROMBlockLock                    
+000062cd  EEPROMBlockPasswordSet             
+0000628d  EEPROMBlockProtectGet              
+000062a1  EEPROMBlockProtectSet              
+0000633d  EEPROMBlockUnlock                  
+0000607d  EEPROMInit                         
+00006417  EEPROMIntClear                     
+000063c9  EEPROMIntDisable                   
+000063a5  EEPROMIntEnable                    
+000063e7  EEPROMIntStatus                    
+0000624f  EEPROMMassErase                    
+00006131  EEPROMProgram                      
+0000620d  EEPROMProgramNonBlocking           
+000060db  EEPROMRead                         
+000060c1  EEPROMSizeGet                      
+0000643f  EEPROMStatusGet                    
+200023f4  ERROR_CODE                         
+0000581f  GPIOADCTriggerDisable              
+00005801  GPIOADCTriggerEnable               
+000057e3  GPIODMATriggerDisable              
+000057c5  GPIODMATriggerEnable               
+00004d77  GPIODirModeGet                     
+00004d1b  GPIODirModeSet                     
+000052df  GPIOIntClear                       
+000052a3  GPIOIntDisable                     
+00005289  GPIOIntEnable                      
+000052f3  GPIOIntRegister                    
+000052bd  GPIOIntStatus                      
+00004e67  GPIOIntTypeGet                     
+00004dc3  GPIOIntTypeSet                     
+00005311  GPIOIntUnregister                  
+00005137  GPIOPadConfigGet                   
+00004efd  GPIOPadConfigSet                   
+00005767  GPIOPinConfigure                   
+0000532b  GPIOPinRead                        
+00005363  GPIOPinTypeADC                     
+00005387  GPIOPinTypeCAN                     
+00005733  GPIOPinTypeCIR                     
+000053ab  GPIOPinTypeComparator              
+000053cf  GPIOPinTypeEPI                     
+000053f3  GPIOPinTypeEthernetLED             
+00005417  GPIOPinTypeEthernetMII             
+0000543b  GPIOPinTypeGPIOInput               
+0000545f  GPIOPinTypeGPIOOutput              
+00005483  GPIOPinTypeGPIOOutputOD            
+000054a7  GPIOPinTypeI2C                     
+000054cb  GPIOPinTypeI2CSCL                  
+000056eb  GPIOPinTypeKBColumn                
+000056c7  GPIOPinTypeKBRow                   
+000054ef  GPIOPinTypeLCD                     
+0000570f  GPIOPinTypeLEDSeq                  
+00005513  GPIOPinTypeLPC                     
+00005537  GPIOPinTypePECIRx                  
+0000555b  GPIOPinTypePECITx                  
+0000557f  GPIOPinTypePWM                     
+000055a3  GPIOPinTypeQEI                     
+000055c7  GPIOPinTypeSSI                     
+000055eb  GPIOPinTypeTimer                   
+0000560f  GPIOPinTypeUART                    
+00005633  GPIOPinTypeUSBAnalog               
+00005657  GPIOPinTypeUSBDigital              
+0000567b  GPIOPinTypeWakeHigh                
+000056a1  GPIOPinTypeWakeLow                 
+00005757  GPIOPinWakeStatus                  
+00005343  GPIOPinWrite                       
+00006b91  GPIO_BlueLedOff                    
+00006b6d  GPIO_BlueLedOn                     
+00006bb5  GPIO_BlueLedToggle                 
+00006aed  GPIO_BuiltinButtonsLedsInit        
+00006b9d  GPIO_GreenLedOff                   
+00006b79  GPIO_GreenLedOn                    
+00006bc1  GPIO_GreenLedToggle                
+00006b85  GPIO_RedLedOff                     
+00006b61  GPIO_RedLedOn                      
+00006ba9  GPIO_RedLedToggle                  
+00006be1  GPIO_SW1EdgeTriggeredInterruptInit 
+00006bcd  GPIO_SW1GetState                   
+00006c2f  GPIO_SW2EdgeTriggeredInterruptInit 
+00006bd7  GPIO_SW2GetState                   
+000074dd  GPTM_WTimer0Init                   
+0000750d  GPTM_WTimer0Read                   
+00006fd5  GetDriverSensorReading             
+00007045  GetPassengerSensorReading          
+00006639  IntDisable                         
+000065c7  IntEnable                          
+000066ab  IntIsEnabled                       
+0000648b  IntMasterDisable                   
+0000647b  IntMasterEnable                    
+000067a1  IntPendClear                       
+00006731  IntPendSet                         
+000065a3  IntPriorityGet                     
+0000651b  IntPriorityGroupingGet             
+00006501  IntPriorityGroupingSet             
+000067fb  IntPriorityMaskGet                 
+000067ef  IntPriorityMaskSet                 
+00006553  IntPrioritySet                     
+0000649b  IntRegister                        
+00006803  IntTrigger                         
+000064ed  IntUnregister                      
+2000268d  PASSENGER_SENSOR_ERROR             
+20002696  PassengerSeatInfo                  
+200023f8  PassengerSelection                 
+0000702d  PassengerSensor_Init               
+00007603  ResetISR                           
 0000400f  SysCtlAltClkConfig                 
 000037e5  SysCtlClockFreqSet                 
 00003cc9  SysCtlClockGet                     
@@ -425,7 +425,7 @@ address   name
 00003e95  SysCtlDeepSleepClockConfigSet      
 00003e77  SysCtlDeepSleepClockSet            
 000036c5  SysCtlDeepSleepPowerSet            
-0000762b  SysCtlDelay                        
+0000760f  SysCtlDelay                        
 00003273  SysCtlFlashSectorSizeGet           
 00003247  SysCtlFlashSizeGet                 
 00003f6b  SysCtlGPIOAHBDisable               
@@ -471,100 +471,100 @@ address   name
 00003fc5  SysCtlVoltageEventClear            
 00003fa9  SysCtlVoltageEventConfig           
 00003fb9  SysCtlVoltageEventStatus           
-00006d3b  UART0_Init                         
-00006d97  UART0_ReceiveByte                  
-00006d7b  UART0_SendByte                     
-00006dcd  UART0_SendInteger                  
-00006da7  UART0_SendString                   
-20001638  __STACK_END                        
+00006d1f  UART0_Init                         
+00006d7b  UART0_ReceiveByte                  
+00006d5f  UART0_SendByte                     
+00006db1  UART0_SendInteger                  
+00006d8b  UART0_SendString                   
+20002648  __STACK_END                        
 00000200  __STACK_SIZE                       
-20001638  __STACK_TOP                        
-00007b60  __TI_CINIT_Base                    
-00007b78  __TI_CINIT_Limit                   
-00007b40  __TI_Handler_Table_Base            
-00007b4c  __TI_Handler_Table_Limit           
-0000754d  __TI_auto_init_nobinit_nopinit     
-0000748f  __TI_decompress_lzss               
-00007605  __TI_decompress_none               
+20002648  __STACK_TOP                        
+00007b40  __TI_CINIT_Base                    
+00007b58  __TI_CINIT_Limit                   
+00007b20  __TI_Handler_Table_Base            
+00007b2c  __TI_Handler_Table_Limit           
+00007531  __TI_auto_init_nobinit_nopinit     
+00007473  __TI_decompress_lzss               
+000075e9  __TI_decompress_none               
 ffffffff  __TI_pprof_out_hndl                
 ffffffff  __TI_prof_data_size                
 ffffffff  __TI_prof_data_start               
 00000000  __TI_static_base__                 
-00007613  __TI_zero_init                     
+000075f7  __TI_zero_init                     
 0000317b  __aeabi_idiv0                      
 0000317b  __aeabi_ldiv0                      
-00007421  __aeabi_ldivmod                    
-000073a7  __aeabi_memclr                     
-000073a7  __aeabi_memclr4                    
-000073a7  __aeabi_memclr8                    
-00007275  __aeabi_memcpy                     
-00007275  __aeabi_memcpy4                    
-00007275  __aeabi_memcpy8                    
-000073a9  __aeabi_memset                     
-000073a9  __aeabi_memset4                    
-000073a9  __aeabi_memset8                    
-00007311  __aeabi_uldivmod                   
+00007405  __aeabi_ldivmod                    
+0000738b  __aeabi_memclr                     
+0000738b  __aeabi_memclr4                    
+0000738b  __aeabi_memclr8                    
+00007259  __aeabi_memcpy                     
+00007259  __aeabi_memcpy4                    
+00007259  __aeabi_memcpy8                    
+0000738d  __aeabi_memset                     
+0000738d  __aeabi_memset4                    
+0000738d  __aeabi_memset8                    
+000072f5  __aeabi_uldivmod                   
 ffffffff  __binit__                          
 ffffffff  __c_args__                         
 UNDEFED   __mpu_init                         
-20001438  __stack                            
+20002448  __stack                            
 20000000  __start___llvm_prf_cnts            
 20000000  __stop___llvm_prf_cnts             
-000075d1  _c_int00_noargs                    
+000075b5  _c_int00_noargs                    
 UNDEFED   _system_post_cinit                 
-00007631  _system_pre_init                   
-00007635  abort                              
+00007615  _system_pre_init                   
+00007619  abort                              
 ffffffff  binit                              
 20000000  g_pfnRAMVectors                    
 00000000  g_pfnVectors                       
 00004071  main                               
-00007275  memcpy                             
-000073af  memset                             
+00007259  memcpy                             
+00007393  memset                             
 00000bdd  pcTaskGetName                      
-000071a5  pvPortMalloc                       
+00007189  pvPortMalloc                       
 00001915  pvTaskIncrementMutexHeldCount      
-20001638  pxCurrentTCB                       
-00006855  pxPortInitialiseStack              
-00007b18  ulMaxSyscallInterruptPriority      
-000070d9  ulPortGetIPSR                      
+20002648  pxCurrentTCB                       
+00006839  pxPortInitialiseStack              
+00007afc  ulMaxSyscallInterruptPriority      
+000070bd  ulPortGetIPSR                      
 0000192d  ulTaskGenericNotifyTake            
 00002125  ulTaskGenericNotifyValueClear      
-200012d0  ullTasksExecutionTime              
-200012fc  ullTasksInTime                     
-20001328  ullTasksOutTime                    
-20001354  ullTasksTotalTime                  
-00006f8f  uxListRemove                       
+200022e4  ullTasksExecutionTime              
+20002310  ullTasksInTime                     
+2000233c  ullTasksOutTime                    
+20002368  ullTasksTotalTime                  
+00006f73  uxListRemove                       
 00002e51  uxQueueMessagesWaiting             
 00002eaf  uxQueueMessagesWaitingFromISR      
 00002e7b  uxQueueSpacesAvailable             
 00000bcd  uxTaskGetNumberOfTasks             
 000018ef  uxTaskResetEventItemValue          
-00007b20  uxTopUsedPriority                  
-00004755  vDisplaySystemState                
-000048d1  vGPIOPortF_Handler                 
-00004941  vGetDriverInput                    
-00004415  vGetDriverSeatTemp                 
-00004a8d  vGetPassengerInput                 
-00004515  vGetPassengerSeatTemp              
-00006ead  vListInitialise                    
-00006edd  vListInitialiseItem                
-00006f29  vListInsert                        
-00006eed  vListInsertEnd                     
-00007195  vPortEnableVFP                     
-00006999  vPortEndScheduler                  
-000069bd  vPortEnterCritical                 
-000069ff  vPortExitCritical                  
-00007231  vPortFree                          
-00007255  vPortInitialiseBlocks              
-00007151  vPortSVCHandler                    
-00006a51  vPortSetupTimerInterrupt           
-00007171  vPortStartFirstTask                
-00006a6b  vPortValidateInterruptPriority     
+00007b04  uxTopUsedPriority                  
+00004739  vDisplaySystemState                
+000048b5  vGPIOPortF_Handler                 
+00004925  vGetDriverInput                    
+000043f9  vGetDriverSeatTemp                 
+00004a71  vGetPassengerInput                 
+000044fd  vGetPassengerSeatTemp              
+00006e91  vListInitialise                    
+00006ec1  vListInitialiseItem                
+00006f0d  vListInsert                        
+00006ed1  vListInsertEnd                     
+00007179  vPortEnableVFP                     
+0000697d  vPortEndScheduler                  
+000069a1  vPortEnterCritical                 
+000069e3  vPortExitCritical                  
+00007215  vPortFree                          
+00007239  vPortInitialiseBlocks              
+00007135  vPortSVCHandler                    
+00006a35  vPortSetupTimerInterrupt           
+00007155  vPortStartFirstTask                
+00006a4f  vPortValidateInterruptPriority     
 00002ed9  vQueueDelete                       
-00004275  vRunTimeMeasurementsTask           
-00004b49  vSensorErrorHook                   
-000045e5  vSetDriverSeatHeaterState          
-00004689  vSetPassengerSeatHeaterState       
+00004255  vRunTimeMeasurementsTask           
+00004b2d  vSensorErrorHook                   
+000045cd  vSetDriverSeatHeaterState          
+00004671  vSetPassengerSeatHeaterState       
 00000599  vTaskDelay                         
 000009c5  vTaskEndScheduler                  
 00001f0d  vTaskGenericNotifyGiveFromISR      
@@ -581,24 +581,24 @@ ffffffff  binit
 000005f9  vTaskSuspend                       
 000009e1  vTaskSuspendAll                    
 00000f3d  vTaskSwitchContext                 
-200013e8  xDisplaySystemStateHandle          
-200013ec  xDriverInfoMutex                   
-200013f0  xDriverInputSemaphore              
-200013f4  xDriverInputSemaphoreFromSteering  
-200013f8  xErrorReportingMutex               
-200013fc  xGetDriverInputFromSteeringHandle  
-20001400  xGetDriverInputHandle              
-20001404  xGetDriverSeatTempHandle           
-20001408  xGetPassengerInputHandle           
-2000140c  xGetPassengerSeatTempHandle        
-20001410  xLM35GetTempMutex                  
-20001414  xLastWakeTime                      
-20001418  xPassengerInfoMutex                
-2000141c  xPassengerInputSemaphore           
-0000725d  xPortGetFreeHeapSize               
-000070f1  xPortPendSVHandler                 
-000068e1  xPortStartScheduler                
-00006a2b  xPortSysTickHandler                
+200023fc  xDisplaySystemStateHandle          
+20002400  xDriverInfoMutex                   
+20002404  xDriverInputSemaphore              
+20002408  xDriverInputSemaphoreFromSteering  
+2000240c  xErrorReportingMutex               
+20002410  xGetDriverInputFromSteeringHandle  
+20002414  xGetDriverInputHandle              
+20002418  xGetDriverSeatTempHandle           
+2000241c  xGetPassengerInputHandle           
+20002420  xGetPassengerSeatTempHandle        
+20002424  xLM35GetTempMutex                  
+20002428  xLastWakeTime                      
+2000242c  xPassengerInfoMutex                
+20002430  xPassengerInputSemaphore           
+00007241  xPortGetFreeHeapSize               
+000070d5  xPortPendSVHandler                 
+000068c5  xPortStartScheduler                
+00006a0f  xPortSysTickHandler                
 00002447  xQueueCreateMutex                  
 00002361  xQueueGenericCreate                
 00002261  xQueueGenericReset                 
@@ -612,11 +612,11 @@ ffffffff  binit
 00002861  xQueueReceive                      
 00002c99  xQueueReceiveFromISR               
 000029b3  xQueueSemaphoreTake                
-20001420  xRunTimeMeasurementsHandle         
-20001424  xSensorErrorHookHandle             
-20001428  xSensorErrorHookSemaphore          
-2000142c  xSetDriverSeatHeaterStateHandle    
-20001430  xSetPassengerSeatHeaterStateHandle 
+20002434  xRunTimeMeasurementsHandle         
+20002438  xSensorErrorHookHandle             
+2000243c  xSensorErrorHookSemaphore          
+20002440  xSetDriverSeatHeaterStateHandle    
+20002444  xSetPassengerSeatHeaterStateHandle 
 00000eef  xTaskCallApplicationTaskHook       
 00000c29  xTaskCatchUpTicks                  
 000013ed  xTaskCheckForTimeOut               
@@ -762,257 +762,257 @@ address   name
 00003ff3  SysCtlClockOutConfig               
 0000400f  SysCtlAltClkConfig                 
 00004071  main                               
-00004275  vRunTimeMeasurementsTask           
-00004415  vGetDriverSeatTemp                 
-00004515  vGetPassengerSeatTemp              
-000045e5  vSetDriverSeatHeaterState          
-00004689  vSetPassengerSeatHeaterState       
-00004755  vDisplaySystemState                
-000048d1  vGPIOPortF_Handler                 
-00004941  vGetDriverInput                    
-00004a8d  vGetPassengerInput                 
-00004b49  vSensorErrorHook                   
-00004d37  GPIODirModeSet                     
-00004d93  GPIODirModeGet                     
-00004ddf  GPIOIntTypeSet                     
-00004e83  GPIOIntTypeGet                     
-00004f19  GPIOPadConfigSet                   
-00005153  GPIOPadConfigGet                   
-000052a5  GPIOIntEnable                      
-000052bf  GPIOIntDisable                     
-000052d9  GPIOIntStatus                      
-000052fb  GPIOIntClear                       
-0000530f  GPIOIntRegister                    
-0000532d  GPIOIntUnregister                  
-00005347  GPIOPinRead                        
-0000535f  GPIOPinWrite                       
-0000537f  GPIOPinTypeADC                     
-000053a3  GPIOPinTypeCAN                     
-000053c7  GPIOPinTypeComparator              
-000053eb  GPIOPinTypeEPI                     
-0000540f  GPIOPinTypeEthernetLED             
-00005433  GPIOPinTypeEthernetMII             
-00005457  GPIOPinTypeGPIOInput               
-0000547b  GPIOPinTypeGPIOOutput              
-0000549f  GPIOPinTypeGPIOOutputOD            
-000054c3  GPIOPinTypeI2C                     
-000054e7  GPIOPinTypeI2CSCL                  
-0000550b  GPIOPinTypeLCD                     
-0000552f  GPIOPinTypeLPC                     
-00005553  GPIOPinTypePECIRx                  
-00005577  GPIOPinTypePECITx                  
-0000559b  GPIOPinTypePWM                     
-000055bf  GPIOPinTypeQEI                     
-000055e3  GPIOPinTypeSSI                     
-00005607  GPIOPinTypeTimer                   
-0000562b  GPIOPinTypeUART                    
-0000564f  GPIOPinTypeUSBAnalog               
-00005673  GPIOPinTypeUSBDigital              
-00005697  GPIOPinTypeWakeHigh                
-000056bd  GPIOPinTypeWakeLow                 
-000056e3  GPIOPinTypeKBRow                   
-00005707  GPIOPinTypeKBColumn                
-0000572b  GPIOPinTypeLEDSeq                  
-0000574f  GPIOPinTypeCIR                     
-00005773  GPIOPinWakeStatus                  
-00005783  GPIOPinConfigure                   
-000057e1  GPIODMATriggerEnable               
-000057ff  GPIODMATriggerDisable              
-0000581d  GPIOADCTriggerEnable               
-0000583b  GPIOADCTriggerDisable              
-000058bb  ADCIntRegister                     
-000058e3  ADCIntUnregister                   
-00005901  ADCIntDisable                      
-0000591d  ADCIntEnable                       
-00005943  ADCIntStatus                       
-0000599b  ADCIntClear                        
-000059b1  ADCSequenceEnable                  
-000059cb  ADCSequenceDisable                 
-000059e5  ADCSequenceConfigure               
-00005a69  ADCSequenceStepConfigure           
-00005b5d  ADCSequenceOverflow                
-00005b75  ADCSequenceOverflowClear           
-00005b8b  ADCSequenceUnderflow               
-00005ba3  ADCSequenceUnderflowClear          
-00005bb9  ADCSequenceDataGet                 
-00005bfb  ADCProcessorTrigger                
-00005c1f  ADCSoftwareOversampleConfigure     
-00005c57  ADCSoftwareOversampleStepConfigure 
-00005d17  ADCSoftwareOversampleDataGet       
-00005d85  ADCHardwareOversampleConfigure     
-00005db7  ADCComparatorConfigure             
-00005dd3  ADCComparatorRegionSet             
-00005df7  ADCComparatorReset                 
-00005e3d  ADCComparatorIntDisable            
-00005e5b  ADCComparatorIntEnable             
-00005e79  ADCComparatorIntStatus             
-00005e87  ADCComparatorIntClear              
-00005e99  ADCIntDisableEx                    
-00005eb1  ADCIntEnableEx                     
-00005ecd  ADCIntStatusEx                     
-00005eff  ADCIntClearEx                      
-00005f17  ADCReferenceSet                    
-00005f33  ADCReferenceGet                    
-00005f45  ADCPhaseDelaySet                   
-00005f57  ADCPhaseDelayGet                   
-00005f65  ADCSequenceDMAEnable               
-00005f81  ADCSequenceDMADisable              
-00005f9d  ADCBusy                            
-00005fbb  ADCClockConfigSet                  
-00005fe5  ADCClockConfigGet                  
-00006099  EEPROMInit                         
-000060dd  EEPROMSizeGet                      
-000060e9  EEPROMBlockCountGet                
-000060f7  EEPROMRead                         
-0000614d  EEPROMProgram                      
-00006229  EEPROMProgramNonBlocking           
-0000626b  EEPROMMassErase                    
-000062a9  EEPROMBlockProtectGet              
-000062bd  EEPROMBlockProtectSet              
-000062e9  EEPROMBlockPasswordSet             
-00006331  EEPROMBlockLock                    
-00006359  EEPROMBlockUnlock                  
-000063a5  EEPROMBlockHide                    
-000063c1  EEPROMIntEnable                    
-000063e5  EEPROMIntDisable                   
-00006403  EEPROMIntStatus                    
-00006433  EEPROMIntClear                     
-0000645b  EEPROMStatusGet                    
-00006497  IntMasterEnable                    
-000064a7  IntMasterDisable                   
-000064b7  IntRegister                        
-00006509  IntUnregister                      
-0000651d  IntPriorityGroupingSet             
-00006537  IntPriorityGroupingGet             
-0000656f  IntPrioritySet                     
-000065bf  IntPriorityGet                     
-000065e3  IntEnable                          
-00006655  IntDisable                         
-000066c7  IntIsEnabled                       
-0000674d  IntPendSet                         
-000067bd  IntPendClear                       
-0000680b  IntPriorityMaskSet                 
-00006817  IntPriorityMaskGet                 
-0000681f  IntTrigger                         
-00006855  pxPortInitialiseStack              
-000068e1  xPortStartScheduler                
-00006999  vPortEndScheduler                  
-000069bd  vPortEnterCritical                 
-000069ff  vPortExitCritical                  
-00006a2b  xPortSysTickHandler                
-00006a51  vPortSetupTimerInterrupt           
-00006a6b  vPortValidateInterruptPriority     
-00006b09  GPIO_BuiltinButtonsLedsInit        
-00006b7d  GPIO_RedLedOn                      
-00006b89  GPIO_BlueLedOn                     
-00006b95  GPIO_GreenLedOn                    
-00006ba1  GPIO_RedLedOff                     
-00006bad  GPIO_BlueLedOff                    
-00006bb9  GPIO_GreenLedOff                   
-00006bc5  GPIO_RedLedToggle                  
-00006bd1  GPIO_BlueLedToggle                 
-00006bdd  GPIO_GreenLedToggle                
-00006be9  GPIO_SW1GetState                   
-00006bf3  GPIO_SW2GetState                   
-00006bfd  GPIO_SW1EdgeTriggeredInterruptInit 
-00006c4b  GPIO_SW2EdgeTriggeredInterruptInit 
-00006d3b  UART0_Init                         
-00006d7b  UART0_SendByte                     
-00006d97  UART0_ReceiveByte                  
-00006da7  UART0_SendString                   
-00006dcd  UART0_SendInteger                  
-00006ead  vListInitialise                    
-00006edd  vListInitialiseItem                
-00006eed  vListInsertEnd                     
-00006f29  vListInsert                        
-00006f8f  uxListRemove                       
-00006fd9  DriverSensor_Init                  
-00006ff1  GetDriverSensorReading             
-00007049  PassengerSensor_Init               
-00007061  GetPassengerSensorReading          
-000070d9  ulPortGetIPSR                      
-000070f1  xPortPendSVHandler                 
-00007151  vPortSVCHandler                    
-00007171  vPortStartFirstTask                
-00007195  vPortEnableVFP                     
-000071a5  pvPortMalloc                       
-00007231  vPortFree                          
-00007255  vPortInitialiseBlocks              
-0000725d  xPortGetFreeHeapSize               
-00007275  __aeabi_memcpy                     
-00007275  __aeabi_memcpy4                    
-00007275  __aeabi_memcpy8                    
-00007275  memcpy                             
-00007311  __aeabi_uldivmod                   
-000073a7  __aeabi_memclr                     
-000073a7  __aeabi_memclr4                    
-000073a7  __aeabi_memclr8                    
-000073a9  __aeabi_memset                     
-000073a9  __aeabi_memset4                    
-000073a9  __aeabi_memset8                    
-000073af  memset                             
-00007421  __aeabi_ldivmod                    
-0000748f  __TI_decompress_lzss               
-000074f9  GPTM_WTimer0Init                   
-00007529  GPTM_WTimer0Read                   
-0000754d  __TI_auto_init_nobinit_nopinit     
-00007591  CPUcpsid                           
-0000759d  CPUprimask                         
-000075a7  CPUcpsie                           
-000075b3  CPUwfi                             
-000075b7  CPUbasepriSet                      
-000075c5  CPUbasepriGet                      
-000075d1  _c_int00_noargs                    
-00007605  __TI_decompress_none               
-00007613  __TI_zero_init                     
-0000761f  ResetISR                           
-0000762b  SysCtlDelay                        
-00007631  _system_pre_init                   
-00007635  C$$EXIT                            
-00007635  abort                              
-00007b18  ulMaxSyscallInterruptPriority      
-00007b20  uxTopUsedPriority                  
-00007b40  __TI_Handler_Table_Base            
-00007b4c  __TI_Handler_Table_Limit           
-00007b60  __TI_CINIT_Base                    
-00007b78  __TI_CINIT_Limit                   
+00004255  vRunTimeMeasurementsTask           
+000043f9  vGetDriverSeatTemp                 
+000044fd  vGetPassengerSeatTemp              
+000045cd  vSetDriverSeatHeaterState          
+00004671  vSetPassengerSeatHeaterState       
+00004739  vDisplaySystemState                
+000048b5  vGPIOPortF_Handler                 
+00004925  vGetDriverInput                    
+00004a71  vGetPassengerInput                 
+00004b2d  vSensorErrorHook                   
+00004d1b  GPIODirModeSet                     
+00004d77  GPIODirModeGet                     
+00004dc3  GPIOIntTypeSet                     
+00004e67  GPIOIntTypeGet                     
+00004efd  GPIOPadConfigSet                   
+00005137  GPIOPadConfigGet                   
+00005289  GPIOIntEnable                      
+000052a3  GPIOIntDisable                     
+000052bd  GPIOIntStatus                      
+000052df  GPIOIntClear                       
+000052f3  GPIOIntRegister                    
+00005311  GPIOIntUnregister                  
+0000532b  GPIOPinRead                        
+00005343  GPIOPinWrite                       
+00005363  GPIOPinTypeADC                     
+00005387  GPIOPinTypeCAN                     
+000053ab  GPIOPinTypeComparator              
+000053cf  GPIOPinTypeEPI                     
+000053f3  GPIOPinTypeEthernetLED             
+00005417  GPIOPinTypeEthernetMII             
+0000543b  GPIOPinTypeGPIOInput               
+0000545f  GPIOPinTypeGPIOOutput              
+00005483  GPIOPinTypeGPIOOutputOD            
+000054a7  GPIOPinTypeI2C                     
+000054cb  GPIOPinTypeI2CSCL                  
+000054ef  GPIOPinTypeLCD                     
+00005513  GPIOPinTypeLPC                     
+00005537  GPIOPinTypePECIRx                  
+0000555b  GPIOPinTypePECITx                  
+0000557f  GPIOPinTypePWM                     
+000055a3  GPIOPinTypeQEI                     
+000055c7  GPIOPinTypeSSI                     
+000055eb  GPIOPinTypeTimer                   
+0000560f  GPIOPinTypeUART                    
+00005633  GPIOPinTypeUSBAnalog               
+00005657  GPIOPinTypeUSBDigital              
+0000567b  GPIOPinTypeWakeHigh                
+000056a1  GPIOPinTypeWakeLow                 
+000056c7  GPIOPinTypeKBRow                   
+000056eb  GPIOPinTypeKBColumn                
+0000570f  GPIOPinTypeLEDSeq                  
+00005733  GPIOPinTypeCIR                     
+00005757  GPIOPinWakeStatus                  
+00005767  GPIOPinConfigure                   
+000057c5  GPIODMATriggerEnable               
+000057e3  GPIODMATriggerDisable              
+00005801  GPIOADCTriggerEnable               
+0000581f  GPIOADCTriggerDisable              
+0000589f  ADCIntRegister                     
+000058c7  ADCIntUnregister                   
+000058e5  ADCIntDisable                      
+00005901  ADCIntEnable                       
+00005927  ADCIntStatus                       
+0000597f  ADCIntClear                        
+00005995  ADCSequenceEnable                  
+000059af  ADCSequenceDisable                 
+000059c9  ADCSequenceConfigure               
+00005a4d  ADCSequenceStepConfigure           
+00005b41  ADCSequenceOverflow                
+00005b59  ADCSequenceOverflowClear           
+00005b6f  ADCSequenceUnderflow               
+00005b87  ADCSequenceUnderflowClear          
+00005b9d  ADCSequenceDataGet                 
+00005bdf  ADCProcessorTrigger                
+00005c03  ADCSoftwareOversampleConfigure     
+00005c3b  ADCSoftwareOversampleStepConfigure 
+00005cfb  ADCSoftwareOversampleDataGet       
+00005d69  ADCHardwareOversampleConfigure     
+00005d9b  ADCComparatorConfigure             
+00005db7  ADCComparatorRegionSet             
+00005ddb  ADCComparatorReset                 
+00005e21  ADCComparatorIntDisable            
+00005e3f  ADCComparatorIntEnable             
+00005e5d  ADCComparatorIntStatus             
+00005e6b  ADCComparatorIntClear              
+00005e7d  ADCIntDisableEx                    
+00005e95  ADCIntEnableEx                     
+00005eb1  ADCIntStatusEx                     
+00005ee3  ADCIntClearEx                      
+00005efb  ADCReferenceSet                    
+00005f17  ADCReferenceGet                    
+00005f29  ADCPhaseDelaySet                   
+00005f3b  ADCPhaseDelayGet                   
+00005f49  ADCSequenceDMAEnable               
+00005f65  ADCSequenceDMADisable              
+00005f81  ADCBusy                            
+00005f9f  ADCClockConfigSet                  
+00005fc9  ADCClockConfigGet                  
+0000607d  EEPROMInit                         
+000060c1  EEPROMSizeGet                      
+000060cd  EEPROMBlockCountGet                
+000060db  EEPROMRead                         
+00006131  EEPROMProgram                      
+0000620d  EEPROMProgramNonBlocking           
+0000624f  EEPROMMassErase                    
+0000628d  EEPROMBlockProtectGet              
+000062a1  EEPROMBlockProtectSet              
+000062cd  EEPROMBlockPasswordSet             
+00006315  EEPROMBlockLock                    
+0000633d  EEPROMBlockUnlock                  
+00006389  EEPROMBlockHide                    
+000063a5  EEPROMIntEnable                    
+000063c9  EEPROMIntDisable                   
+000063e7  EEPROMIntStatus                    
+00006417  EEPROMIntClear                     
+0000643f  EEPROMStatusGet                    
+0000647b  IntMasterEnable                    
+0000648b  IntMasterDisable                   
+0000649b  IntRegister                        
+000064ed  IntUnregister                      
+00006501  IntPriorityGroupingSet             
+0000651b  IntPriorityGroupingGet             
+00006553  IntPrioritySet                     
+000065a3  IntPriorityGet                     
+000065c7  IntEnable                          
+00006639  IntDisable                         
+000066ab  IntIsEnabled                       
+00006731  IntPendSet                         
+000067a1  IntPendClear                       
+000067ef  IntPriorityMaskSet                 
+000067fb  IntPriorityMaskGet                 
+00006803  IntTrigger                         
+00006839  pxPortInitialiseStack              
+000068c5  xPortStartScheduler                
+0000697d  vPortEndScheduler                  
+000069a1  vPortEnterCritical                 
+000069e3  vPortExitCritical                  
+00006a0f  xPortSysTickHandler                
+00006a35  vPortSetupTimerInterrupt           
+00006a4f  vPortValidateInterruptPriority     
+00006aed  GPIO_BuiltinButtonsLedsInit        
+00006b61  GPIO_RedLedOn                      
+00006b6d  GPIO_BlueLedOn                     
+00006b79  GPIO_GreenLedOn                    
+00006b85  GPIO_RedLedOff                     
+00006b91  GPIO_BlueLedOff                    
+00006b9d  GPIO_GreenLedOff                   
+00006ba9  GPIO_RedLedToggle                  
+00006bb5  GPIO_BlueLedToggle                 
+00006bc1  GPIO_GreenLedToggle                
+00006bcd  GPIO_SW1GetState                   
+00006bd7  GPIO_SW2GetState                   
+00006be1  GPIO_SW1EdgeTriggeredInterruptInit 
+00006c2f  GPIO_SW2EdgeTriggeredInterruptInit 
+00006d1f  UART0_Init                         
+00006d5f  UART0_SendByte                     
+00006d7b  UART0_ReceiveByte                  
+00006d8b  UART0_SendString                   
+00006db1  UART0_SendInteger                  
+00006e91  vListInitialise                    
+00006ec1  vListInitialiseItem                
+00006ed1  vListInsertEnd                     
+00006f0d  vListInsert                        
+00006f73  uxListRemove                       
+00006fbd  DriverSensor_Init                  
+00006fd5  GetDriverSensorReading             
+0000702d  PassengerSensor_Init               
+00007045  GetPassengerSensorReading          
+000070bd  ulPortGetIPSR                      
+000070d5  xPortPendSVHandler                 
+00007135  vPortSVCHandler                    
+00007155  vPortStartFirstTask                
+00007179  vPortEnableVFP                     
+00007189  pvPortMalloc                       
+00007215  vPortFree                          
+00007239  vPortInitialiseBlocks              
+00007241  xPortGetFreeHeapSize               
+00007259  __aeabi_memcpy                     
+00007259  __aeabi_memcpy4                    
+00007259  __aeabi_memcpy8                    
+00007259  memcpy                             
+000072f5  __aeabi_uldivmod                   
+0000738b  __aeabi_memclr                     
+0000738b  __aeabi_memclr4                    
+0000738b  __aeabi_memclr8                    
+0000738d  __aeabi_memset                     
+0000738d  __aeabi_memset4                    
+0000738d  __aeabi_memset8                    
+00007393  memset                             
+00007405  __aeabi_ldivmod                    
+00007473  __TI_decompress_lzss               
+000074dd  GPTM_WTimer0Init                   
+0000750d  GPTM_WTimer0Read                   
+00007531  __TI_auto_init_nobinit_nopinit     
+00007575  CPUcpsid                           
+00007581  CPUprimask                         
+0000758b  CPUcpsie                           
+00007597  CPUwfi                             
+0000759b  CPUbasepriSet                      
+000075a9  CPUbasepriGet                      
+000075b5  _c_int00_noargs                    
+000075e9  __TI_decompress_none               
+000075f7  __TI_zero_init                     
+00007603  ResetISR                           
+0000760f  SysCtlDelay                        
+00007615  _system_pre_init                   
+00007619  C$$EXIT                            
+00007619  abort                              
+00007afc  ulMaxSyscallInterruptPriority      
+00007b04  uxTopUsedPriority                  
+00007b20  __TI_Handler_Table_Base            
+00007b2c  __TI_Handler_Table_Limit           
+00007b40  __TI_CINIT_Base                    
+00007b58  __TI_CINIT_Limit                   
 20000000  __start___llvm_prf_cnts            
 20000000  __stop___llvm_prf_cnts             
 20000000  g_pfnRAMVectors                    
-200012d0  ullTasksExecutionTime              
-200012fc  ullTasksInTime                     
-20001328  ullTasksOutTime                    
-20001354  ullTasksTotalTime                  
-200013dc  DriverSelection                    
-200013e0  ERROR_CODE                         
-200013e4  PassengerSelection                 
-200013e8  xDisplaySystemStateHandle          
-200013ec  xDriverInfoMutex                   
-200013f0  xDriverInputSemaphore              
-200013f4  xDriverInputSemaphoreFromSteering  
-200013f8  xErrorReportingMutex               
-200013fc  xGetDriverInputFromSteeringHandle  
-20001400  xGetDriverInputHandle              
-20001404  xGetDriverSeatTempHandle           
-20001408  xGetPassengerInputHandle           
-2000140c  xGetPassengerSeatTempHandle        
-20001410  xLM35GetTempMutex                  
-20001414  xLastWakeTime                      
-20001418  xPassengerInfoMutex                
-2000141c  xPassengerInputSemaphore           
-20001420  xRunTimeMeasurementsHandle         
-20001424  xSensorErrorHookHandle             
-20001428  xSensorErrorHookSemaphore          
-2000142c  xSetDriverSeatHeaterStateHandle    
-20001430  xSetPassengerSeatHeaterStateHandle 
-20001438  __stack                            
-20001638  __STACK_END                        
-20001638  __STACK_TOP                        
-20001638  pxCurrentTCB                       
-2000167c  DRIVER_SENSOR_ERROR                
-2000167d  PASSENGER_SENSOR_ERROR             
-20001683  DriverSeatInfo                     
-20001686  PassengerSeatInfo                  
+200022e4  ullTasksExecutionTime              
+20002310  ullTasksInTime                     
+2000233c  ullTasksOutTime                    
+20002368  ullTasksTotalTime                  
+200023f0  DriverSelection                    
+200023f4  ERROR_CODE                         
+200023f8  PassengerSelection                 
+200023fc  xDisplaySystemStateHandle          
+20002400  xDriverInfoMutex                   
+20002404  xDriverInputSemaphore              
+20002408  xDriverInputSemaphoreFromSteering  
+2000240c  xErrorReportingMutex               
+20002410  xGetDriverInputFromSteeringHandle  
+20002414  xGetDriverInputHandle              
+20002418  xGetDriverSeatTempHandle           
+2000241c  xGetPassengerInputHandle           
+20002420  xGetPassengerSeatTempHandle        
+20002424  xLM35GetTempMutex                  
+20002428  xLastWakeTime                      
+2000242c  xPassengerInfoMutex                
+20002430  xPassengerInputSemaphore           
+20002434  xRunTimeMeasurementsHandle         
+20002438  xSensorErrorHookHandle             
+2000243c  xSensorErrorHookSemaphore          
+20002440  xSetDriverSeatHeaterStateHandle    
+20002444  xSetPassengerSeatHeaterStateHandle 
+20002448  __stack                            
+20002648  __STACK_END                        
+20002648  __STACK_TOP                        
+20002648  pxCurrentTCB                       
+2000268c  DRIVER_SENSOR_ERROR                
+2000268d  PASSENGER_SENSOR_ERROR             
+20002693  DriverSeatInfo                     
+20002696  PassengerSeatInfo                  
 ffffffff  __TI_pprof_out_hndl                
 ffffffff  __TI_prof_data_size                
 ffffffff  __TI_prof_data_start               

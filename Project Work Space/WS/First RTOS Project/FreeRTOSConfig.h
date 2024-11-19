@@ -33,12 +33,12 @@
 #define configTICK_RATE_HZ                    ((TickType_t)100)
 
 /* Size of the stack allocated to the Idle task. 128 Words = 512 Bytes */
-#define configMINIMAL_STACK_SIZE              (128)
+#define configMINIMAL_STACK_SIZE              (8)
 
 /* configMAX_PRIORITIES Sets the number of available task priorities.  Tasks can
  * be assigned priorities of 0 to (configMAX_PRIORITIES - 1).  Zero is the lowest
  * priority. */
-#define configMAX_PRIORITIES                  (5)
+#define configMAX_PRIORITIES                  (6)
 
 /* Set configUSE_PREEMPTION to 1 to use pre-emptive scheduling. Set
  * configUSE_PREEMPTION to 0 to use co-operative scheduling. */
@@ -57,7 +57,7 @@
  * or heap_4.c are included in the build. This value is defaulted to 4096 bytes but
  * it must be tailored to each application. Note the heap will appear in the .bss
  * section. */
-#define configTOTAL_HEAP_SIZE                 ((size_t)(4096))
+#define configTOTAL_HEAP_SIZE                 ((size_t)(8192))
 
 /* Set the following configUSE_* constants to 1 to include the named feature in
  * the build, or 0 to exclude the named feature from the build. */
